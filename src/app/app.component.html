@@ -11,19 +11,22 @@
       <agm-map
           [latitude]="lat"
           [longitude]="lng"
-          [zoom]="zoom">
-          <agm-marker
-          [latitude]="lat"
-          [longitude]="lng">
+          [zoom]="zoom"
+          (mapClick)="clickMapa($event)">
+          <agm-marker *ngFor="let mark of _ms.marcadores"
+          [latitude]="mark.lat"
+          [longitude]="mark.lng"
+          [title]="mark.titulo"
+          [markerDraggable]="mark.draggable">
           <agm-info-window>
-            <strong>Titulo</strong>
-            <p>
-              Esta es la plaza central de Tandil
+            <strong>{{mark.titulo}}</strong>
+            <p *ngIf="mark.desc">
+              {{mark.desc}}
             </p>
           </agm-info-window>
         </agm-marker>
       </agm-map>
     </div>
   </div>
-  
+
 </div>
