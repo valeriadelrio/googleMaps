@@ -13,11 +13,13 @@
           [longitude]="lng"
           [zoom]="zoom"
           (mapClick)="clickMapa($event)">
-          <agm-marker *ngFor="let mark of _ms.marcadores"
+          <agm-marker *ngFor="let mark of _ms.marcadores; let i = index"
           [latitude]="mark.lat"
           [longitude]="mark.lng"
           [title]="mark.titulo"
-          [markerDraggable]="mark.draggable">
+          [markerDraggable]="mark.draggable"
+          (markerClick)="clickMarcador(mark, i)"
+          (dragEnd)="dragEndMarcador(mark, $event)">
           <agm-info-window>
             <strong>{{mark.titulo}}</strong>
             <p *ngIf="mark.desc">
